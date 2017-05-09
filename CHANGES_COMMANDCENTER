@@ -1,0 +1,32 @@
+General
+Add push notifications
+Create classifier tests
+Add option to authenticate interface (api only)
+Option to stream api output (debugging and status blah)
+Distinguish between temporary, permanent and temporal learn
+
+User.py
+Profile => Name, Username, password, services auth (facebook, gmail etc), address, phone number, gender, clearance...
+Add option to view and edit profile (website and api)
+Add option to authenticate user (api. website done)
+Add option to enable/disable microservice
+Add option to delete user
+...
+
+
+Database.py
+Add appropriate functions
+
+Infer.py
+Alias resolution
+Spelling and grammar correction
+Coref resolution
+Natural learn
+word based query classifier
+?? How to mix word and sentence based query classifier
+If text only and image required look for unused image or wait for one (with timeout)
+If image only and text required look for unused text or wait for one (with timeout)
+Save last 10 messages for context and coref
+
+Learn.py
+Remove altogether
