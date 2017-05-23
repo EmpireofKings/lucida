@@ -30,22 +30,17 @@ SERVICES = {
 
 # Map from input type to query classes and services needed by each class.
 CLASSIFIER_DESCRIPTIONS = {
-    'text' : { 'class_QA' :  Graph([Node('QA')]),
-               'class_CA' : Graph([Node('CA')]),
-               'class_WE' : Graph([Node('WE')]),
-               'class_MS' : Graph([Node('MS')]),
-               'class_WE_DCM' : Graph([Node('WE', [1]), Node('DCM_WE', [0])]) },
-    'image' : { 'class_IMM' : Graph([Node('IMM')]),
-                'class_IMC' : Graph([Node('IMC')]),
-                'class_FACE' : Graph([Node('FACE')]),
-                'class_DIG' : Graph([Node('DIG')]) },
-    'text_image' : { 'class_QA': Graph([Node('QA')]),
-                     'class_IMM' : Graph([Node('IMM')]),
-                     'class_IMM_QA' : Graph([Node('IMM', [1]), Node('QA')]),
-                     'class_IMC' : Graph([Node('IMC')]),
-                     'class_FACE' : Graph([Node('FACE')]),
-                     'class_DIG' : Graph([Node('DIG')]),
-                     'class_IMM_DCM_QA_WE' : Graph([Node('IMM', [1]), Node('DCM_IMM', [0,2]), Node('QA', [3]), Node('WE')]) }
+    'class_QA' :  Graph([Node('QA')]),
+    'class_CA' : Graph([Node('CA')]),
+    'class_WE' : Graph([Node('WE')]),
+    'class_MS' : Graph([Node('MS')]),
+    'class_WE_DCM' : Graph([Node('WE', [1]), Node('DCM_WE', [0])]),
+    'class_IMM' : Graph([Node('IMM')]),
+    'class_IMC' : Graph([Node('IMC')]),
+    'class_FACE' : Graph([Node('FACE')]),
+    'class_DIG' : Graph([Node('DIG')]),
+    'class_IMM_QA' : Graph([Node('IMM', [1]), Node('QA')]),
+    'class_IMM_DCM_QA_WE' : Graph([Node('IMM', [1]), Node('DCM_IMM', [0,2]), Node('QA', [3]), Node('WE')])
     }
 
 # TODO: Should I have this in its own Config file?

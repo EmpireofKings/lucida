@@ -24,33 +24,28 @@ import Config
 class DummyClassifier(object):
 	def __init__(self, query_class_name_in):
 		self.query_class_name = query_class_name_in
-		
+
 	def predict(self, speech_input):
 		return [self.query_class_name]
-	
+
 class QueryClassifier(object):
 	# Constructor.
 	def __init__(self, TRAIN_OR_LOAD, CLASSIFIER_DESCRIPTIONS_IN):
 		self.CLASSIFIER_DESCRIPTIONS = CLASSIFIER_DESCRIPTIONS_IN
-		self.classifiers = {}
-		# Each input type has its own classifier.
-		for input_type in self.CLASSIFIER_DESCRIPTIONS:
-			# query_classes represents all the possible classification outcomes 
-			# and their needed services for a given input type.
-			if TRAIN_OR_LOAD == 'train':
-				self.classifiers[input_type] = self.train(input_type,
-					self.CLASSIFIER_DESCRIPTIONS[input_type])
-			elif TRAIN_OR_LOAD == 'load':
-				self.classifiers[input_type] = self.load(input_type,
-					self.CLASSIFIER_DESCRIPTIONS[input_type])
-			else:
-				raise RuntimeError(
-					'TRAIN_OR_LOAD must be either "train" or "load"')
+		# query_classes represents all the possible classification outcomes 
+		# and their needed services for a given input type.
+		if TRAIN_OR_LOAD == 'train':
+			self.classifier = self.train(self.CLASSIFIER_DESCRIPTIONS)
+		elif TRAIN_OR_LOAD == 'load':
+			self.classifier = self.load(self.CLASSIFIER_DESCRIPTIONS)
+		else:
+			raise RuntimeError(
+				'TRAIN_OR_LOAD must be either "train" or "load"')
 		log('@@@@@ Summary of classifiers:')
-		log(str(self.classifiers))
-	
-	def train(self, input_type, query_classes):
-		log('********************** ' + input_type + ' **********************')
+		log(str(self.classifier))
+
+	def train(self, query_classes):
+		log('********************** TRAINING MODEL **********************')
 		current_dir = os.path.abspath(os.path.dirname(__file__))
 		# If there is no or only one possible outcomes for the input type, 
 		# there is no need to train any classifier.
@@ -97,13 +92,12 @@ class QueryClassifier(object):
 		# Save the classifier,
 		if not os.path.exists(current_dir + '/../models'):
 			os.makedirs(current_dir + '/../models')
-		with open(current_dir + '/../models/dumped_classifier_' +
-				input_type + '.pkl', 'wb') as fid:
-			log('Saving model for ' + input_type)
+		with open(current_dir + '/../models/dumped_classifier.pkl', 'wb') as fid:
+			log('Saving model')
 			cPickle.dump(pipeline, fid)
 		return pipeline
-	
-	def load(self, input_type, query_classes):
+
+	def load(self, query_classes):
 		current_dir = os.path.abspath(os.path.dirname(__file__))
 		# If there is no or only one possible outcomes for the input type, 
 		# there is no need to train any classifier.
@@ -111,33 +105,24 @@ class QueryClassifier(object):
 			return DummyClassifier(query_classes.keys()[0])
 		try:
 			with open(current_dir +
-				'/../models/dumped_classifier_' + input_type + '.pkl',
+				'/../models/dumped_classifier.pkl',
 				'rb') as fid:
-				log('Loading model for ' + input_type)
+				log('Loading model')
 				return cPickle.load(fid)
 		except IOError as e:
 			print e
 			exit(1)
-			
-	def predict(self, speech_input, image_input):
-		input_type = ''
-		if speech_input:
-			if image_input:
-				input_type = 'text_image'
-			else:
-				input_type = 'text'
-		else:
-			if image_input:
-				input_type = 'image'
-			else:
-				raise RuntimeError('Text and image cannot be both empty')      
+
+	def predict(self, speech_input):
+		if not speech_input:
+			raise RuntimeError('Text cannot be empty')
 		# Convert speech_input to a single-element list.
-		class_predicted = self.classifiers[input_type].predict([speech_input])
+		class_predicted = self.classifier.predict([speech_input])
 		class_predicted = class_predicted[0] # ndarray to string
 		log('Query classified as ' + class_predicted)
-		return self.CLASSIFIER_DESCRIPTIONS[input_type][class_predicted]
+		return self.CLASSIFIER_DESCRIPTIONS[class_predicted]
 
 
 query_classifier = QueryClassifier(Config.TRAIN_OR_LOAD,
 	Config.CLASSIFIER_DESCRIPTIONS)
-	
+

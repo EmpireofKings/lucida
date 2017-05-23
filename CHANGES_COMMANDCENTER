@@ -1,3 +1,5 @@
+FIXME: IMM DCM no longer works as only image input is required. Fix and improve
+
 General
 Add push notifications
 Create classifier tests
