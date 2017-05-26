@@ -3,6 +3,8 @@ FIXME: IMM DCM no longer works as only image input is required. Fix and improve
 General
 Add push notifications
 Create classifier tests
+DSLs!!!!
+Common corenlp engine
 Add option to authenticate interface (api only)
 Option to stream api output (debugging and status blah)
 Distinguish between temporary, permanent and temporal learn
@@ -21,7 +23,7 @@ Add appropriate functions
 
 Infer.py
 Alias resolution
-Spelling and grammar correction
+Spelling and grammar correction (https://pypi.python.org/pypi/language-check)
 Coref resolution
 Natural learn
 word based query classifier
