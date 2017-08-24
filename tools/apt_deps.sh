@@ -1,78 +1,53 @@
 #!/bin/bash
 ## Installs all package manager dependencies
-## FROM ubuntu:14.04
 
 apt-get update
-ln -s -f bash /bin/sh
-ln -s /usr/bin/pip2 /usr/local/bin/pip
-apt-get install -y zlib1g-dev \
-                   libatlas3-base \
-                   python2.7-dev \
-                   libblas3 \
-                   libblas-dev \
-                   liblapack3 \
-                   liblapack-dev \
-                   libc6 \
-                   software-properties-common \
-                   gfortran \
-                   make \
-                   ant \
+apt-get install -y g++ \
                    gcc \
-                   g++ \
-                   wget \
-                   automake \
+                   build-essential \
+                   libc6 \
+                   libssl-dev \
+                   libsasl2-dev \
+                   pkg-config \
                    git \
                    curl \
-                   libboost-dev \
-                   libboost-all-dev \
                    libevent-dev \
-                   libdouble-conversion-dev \
-                   libtool \
-                   liblz4-dev \
-                   liblzma-dev \
-                   binutils-dev \
-                   libjemalloc-dev \
-                   pkg-config \
-                   libtesseract-dev \
-                   libopenblas-dev \
-                   libblas-dev \
-                   libatlas-dev \
-                   libatlas-base-dev \
-                   libiberty-dev \
-                   liblapack-dev \
-                   cmake \
-                   zip \
-                   unzip \
-                   sox \
-                   libsox-dev \
-                   autoconf \
-                   autoconf-archive \
-                   bison \
-                   swig \
+                   libboost-all-dev \
+                   python-all-dev \
+                   curl \
+                   openjdk-8-jdk \
+                   openjdk-8-jre \
                    python-pip \
-                   subversion \
-                   libssl-dev \
-                   libprotoc-dev \
-                   supervisor \
-                   flac \
-                   gawk \
-                   imagemagick \
-                   libgflags-dev libgoogle-glog-dev liblmdb-dev \
-                   libleveldb-dev libsnappy-dev libhdf5-serial-dev \
-                   bc \
-                   python-numpy \
-                   flex \
-                   libkrb5-dev \
-                   libsasl2-dev \
-                   libnuma-dev \
-                   scons \
-                   python-gi \
-                   python-gobject \
                    python-gobject-2 \
-                   vim \
-                   memcached \
-                   libyaml-dev \
-                   libffi-dev \
-                   libbz2-dev \
+                   python-gobject \
+                   python-gi \
                    python-yaml \
-&& pip install virtualenv ws4py
+                   scons \
+                   python-numpy \
+                   libprotoc-dev \
+                   ant \
+                   bison \
+                   flex \
+                   php \
+                   phpunit \
+                   libglib2.0-dev \
+                   libtbb-dev \
+                   libavresample-dev \
+                   libeigen3-dev \
+                   apache2 \
+                   libapache2-mod-php \
+                   libgstreamer-plugins-good1.0-dev \
+                   libgstreamer-plugins-bad1.0-dev \
+                   gstreamer1.0-tools \
+                   gstreamer1.0-plugins-good \
+                   gstreamer1.0-plugins-bad \
+                   gstreamer1.0-plugins-ugly \
+                   libgstreamer1.0-dev \
+                   perl \
+                   autoconf \
+                   automake \
+                   libtool \
+                   python-ws4py \
+                   python-virtualenv \
+                   libclass-accessor-perl \
+                   libbit-vector-perl

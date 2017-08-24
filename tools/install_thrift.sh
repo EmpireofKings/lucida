@@ -35,7 +35,7 @@ if [ ! -d thrift-$THRIFT_VERSION ]; then
 fi
 
 cd thrift-$THRIFT_VERSION \
-  && ./configure --with-lua=no --with-ruby=no --with-go=no --with-erlang=no --with-nodejs=no --with-qt4=no --with-qt5=no \
+  && ./configure --with-lua=no --with-ruby=no --with-go=no --with-erlang=no --with-qt4=no --with-qt5=no \
   && make -j$THREADS \
   && make -j$THREADS install \
   && cd lib/py/ \
