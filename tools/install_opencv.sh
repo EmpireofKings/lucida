@@ -4,7 +4,7 @@ if [ -z $THREADS ]; then
 fi
 
 installCheck () {
-  g++ check_opencv.cpp -o check_opencv
+  g++ check_opencv.cpp -o check_opencv 2>/dev/null
   if [[ $? -ne 0 ]]; then
     return 1
   else
@@ -45,10 +45,11 @@ if [ -z "$DEF_VER" ]; then
   exit 1
 fi
 
-ACT_VER=`cat ./build/version_string.tmp | grep -Poe "2\.4\.\d+\.\d+-\d+"`
-ACT_REL=`echo $ACT_VER | grep -Poe "(?<=-)\d+"`
-ACT_VER=`echo $ACT_VER | grep -Poe "[\d\.]+(?=-)"`
-if [ -z "$ACT_VER" ] || [ -z "$ACT_REL" ]; then
+ACT_VER=`cat version_string.tmp | grep -Poe "2\.4\.\d+\.\d+-\d+"` || ACT_VER=`cat version_string.tmp | grep -Poe "2\.4\.\d+\.\d+"` || ACT_VER=""
+ACT_REL=`echo $ACT_VER | grep -Poe "(?<=-)\d+" | head -1`
+if [ -z "$ACT_REL" ]; then ACT_REL="0"; fi
+ACT_VER=`echo $ACT_VER | grep -Poe "2\.4\.\d+\.\d+" | head -1`
+if [ -z "$ACT_VER" ]; then
   echo "Actual OpenCV version could not be determined from build files!!! Must be a temporary error..."
   cd ..
   rm -rf build
