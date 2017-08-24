@@ -8,7 +8,7 @@ all:
 	(sudo ./install_thrift.sh) || (exit 1)
 	(sudo ./install_fbthrift.sh) || (exit 1)
 	(sudo ./install_mongodb.sh) || (exit 1)
-	(sudo ./clean.sh) || (exit 0)
+	(sudo ./declutter.sh) || (exit 0)
 
 clean:
 	sudo ./clean.sh

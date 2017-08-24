@@ -50,4 +50,6 @@ apt-get install -y g++ \
                    python-ws4py \
                    python-virtualenv \
                    libclass-accessor-perl \
-                   libbit-vector-perl
+                   libbit-vector-perl \
+                   libjansson-dev \
+                   ffmpeg
