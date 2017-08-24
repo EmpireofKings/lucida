@@ -15,7 +15,7 @@ clean:
 	rm -rf lucidaservice lucidatypes
 
 start_server:
-	source ${PWD}/../../tools/python_2_7_12/bin/activate && python app.py
+	. ${PWD}/../../tools/venv/bin/activate && python app.py
 
 docker:
 	cp ../lucidaservice.thrift .; \

@@ -1,6 +1,10 @@
 .PHONY: all setup clean
 
-all: setup
+all:
+	sudo apt-get install python python-pip
+	sudo -H pip install --upgrade pip setuptools
+	sudo -H pip install --upgrade -r requirements.txt
+	./setup.sh
 
 setup:
 	./setup.sh

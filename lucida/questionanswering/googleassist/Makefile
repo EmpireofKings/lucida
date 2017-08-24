@@ -9,7 +9,7 @@ thrift:
 	fi
 
 all: thrift
-	sudo apt-get install python portaudio19-dev libffi-dev libssl-dev python-pip
+	sudo apt-get install python python-pip
 	sudo -H pip install --upgrade pip setuptools
 	sudo -H pip install --upgrade -r requirements.txt
 
